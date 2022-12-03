@@ -9,24 +9,66 @@ import SwiftUI
 import FLAnimatedImage
 
 struct HomeView: View {
-    
     @ObservedObject private var viewModel: HomeViewModel
     @State private var searchedPokemon: String
     @State private var boxNumber: Int = 1
     @State private var showTeam: Bool = false
     
-    private let pageNumber = 15
     private let bgColorUtils = BgColorUtils()
+    private let pageNumber = 15
+    
+    init() {
+        searchedPokemon = ""
+        viewModel = HomeViewModel()
+        UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Pokemon-Pixel-Font", size: 30)!]
+    }
     
     var body: some View {
         NavigationView {
+            ZStack(alignment: .center) {
+                if(viewModel.showNotFoundMessage){
+                    pokemonNotFoundView
+                }
+                
+                VStack {
+                    headerBoxView
+                    tableView
+                    bottomView
+                }
+                
+//                if(showTeam){
+//                    CustomTeamView(showView: $showTeam)
+//                }
+            }
+            .navigationBarTitle(Text("Pokedex").font(.subheadline), displayMode: .inline)
+            .withGradientBackgroundStyle(startColor: "startBackgroundGradient", endColor: "endBackgroundGradient")
+        }.onAppear(){
+            viewModel.getPokemonsFromAPI(from: 0)
+        }.overlay(){
             VStack {
-                headerBoxView
-                tableView
-                bottomView
+                if(viewModel.pokemonHomeList.isEmpty && !viewModel.showNotFoundMessage){
+                    GIFView(type: .url(URL(string: "https://media.tenor.com/fSsxftCb8w0AAAAi/pikachu-running.gif")!))
+                        .frame(width: 75, height: 50)
+                        .padding()
+                    
+                    Text("LOADING...").withCustomFont(size: 20).onAppear(){ viewModel.activateSearchbar = false }
+                }
+                
+//                if(viewModel.activateSearchbar){
+//                    SearchbarView(boxNumber: $boxNumber, searchedPokemon: $searchedPokemon, showView: $viewModel.activateSearchbar, viewModel: viewModel)
+//                }
             }
         }
-        .navigationBarTitle(Text("Pokedex").font(.subheadline), displayMode: .inline)
+    }
+    
+    @ViewBuilder
+    private var pokemonNotFoundView: some View {
+        Spacer()
+        VStack {
+            Image("ic_pikachu_sorprendido").resizable().frame(width: 125, height: 100)
+            Text("Pokémon not found").background(Color.white)
+        }
+        Spacer()
     }
     
     @ViewBuilder
@@ -43,8 +85,7 @@ struct HomeView: View {
                 }
             
             Text("BOX " + boxNumber.description)
-//                .withCustomFont(size: 34)
-                .font(.title)
+                .withCustomFont(size: 34)
                 .frame(maxWidth: .infinity, maxHeight: 40)
                 .background(Rectangle().fill(Color.white).cornerRadius(4))
                 .shadow(radius: 1)
@@ -97,7 +138,7 @@ struct HomeView: View {
                         }
                         .padding()
                         .overlay(
-                            Text("#\(poke.pokemonId)  \(poke.name.capitalized)")
+                            Text("\(poke.name.capitalized)")
                                 .withCustomFont(size: 20)
                                 .foregroundColor(Color.white)
                                 .padding(.bottom, 2)
@@ -119,10 +160,12 @@ struct HomeView: View {
                 .onTapGesture {
                     viewModel.activateSearchbar = !viewModel.activateSearchbar
                 }
+            
             Image("ic_team").bottomIconSizeStyle().padding(.leading, 10).foregroundColor(.white)
                 .onTapGesture {
                     showTeam = !showTeam
                 }
+            
             Spacer()
  
             if(!searchedPokemon.isEmpty){
@@ -136,11 +179,5 @@ struct HomeView: View {
                     }
             }
         }.padding(.bottom, 20)
-    }
-    
-    init() {
-        searchedPokemon = ""
-        viewModel = HomeViewModel()
-        UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Pokemon-Pixel-Font", size: 30)!]
     }
 }

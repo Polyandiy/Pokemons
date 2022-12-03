@@ -159,14 +159,14 @@ struct PokemonNetwork: Network {
             guard let url = URL(string: url) else {
                 return Disposables.create()
             }
-            
+
             let urlRequest = URLRequest(url: url)
             let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
                 if let error = error {
                     print("Request error: ", error)
                     return
                 }
-                
+
                 guard let response = response as? HTTPURLResponse else { return }
 
                 if response.statusCode == 200 {
@@ -175,7 +175,7 @@ struct PokemonNetwork: Network {
                         do {
                             let pokemonMove = try JSONDecoder().decode(PokemonMoveResponse.self, from: data)
                             observer.onNext(pokemonMove)
-                            
+
                         } catch let error {
                             print("Error decoding: ", error)
                             observer.onError(error)
