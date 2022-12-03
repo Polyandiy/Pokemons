@@ -154,7 +154,7 @@ struct PokemonNetwork: Network {
     }
     
     
-    func getPokemonMoveDetailByURL(url: String) -> Observable<PokemonMoveResponse> {
+    func getPokemonMoveDetailByUrl(url: String) -> Observable<PokemonMoveResponse> {
         return Observable<PokemonMoveResponse>.create { observer in
             guard let url = URL(string: url) else {
                 return Disposables.create()
@@ -183,7 +183,6 @@ struct PokemonNetwork: Network {
                     }
                 }
             }
-            
             dataTask.resume()
             return Disposables.create()
         }
