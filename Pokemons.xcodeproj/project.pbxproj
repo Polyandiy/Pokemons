@@ -25,6 +25,7 @@
 		CE614B97293B3D0D00C4FDC0 /* TextUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE614B96293B3D0D00C4FDC0 /* TextUtils.swift */; };
 		CE614B9A293B6E3100C4FDC0 /* GIFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE614B99293B6E3100C4FDC0 /* GIFView.swift */; };
 		CE614B9C293B764400C4FDC0 /* Pokemon-Font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE614B9B293B764400C4FDC0 /* Pokemon-Font.ttf */; };
+		CE614BA0293C84D100C4FDC0 /* SearchbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE614B9F293C84D100C4FDC0 /* SearchbarView.swift */; };
 		E93C3720212877D427D98FF9 /* Pods_Pokemons.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CE493272A6876319343D20 /* Pods_Pokemons.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		CE614B99293B6E3100C4FDC0 /* GIFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFView.swift; sourceTree = "<group>"; };
 		CE614B9B293B764400C4FDC0 /* Pokemon-Font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pokemon-Font.ttf"; sourceTree = "<group>"; };
 		CE614B9D293B769900C4FDC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CE614B9F293C84D100C4FDC0 /* SearchbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchbarView.swift; sourceTree = "<group>"; };
 		D1CE493272A6876319343D20 /* Pods_Pokemons.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pokemons.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -146,6 +148,7 @@
 		CE614B79293B225C00C4FDC0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CE614B9E293C84AF00C4FDC0 /* Fragments */,
 				CE614B6B293B1D2400C4FDC0 /* HomeView.swift */,
 				CE614B90293B3C1100C4FDC0 /* DetailView.swift */,
 			);
@@ -197,6 +200,14 @@
 				CE614B86293B37AE00C4FDC0 /* Utils */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		CE614B9E293C84AF00C4FDC0 /* Fragments */ = {
+			isa = PBXGroup;
+			children = (
+				CE614B9F293C84D100C4FDC0 /* SearchbarView.swift */,
+			);
+			path = Fragments;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,6 +329,7 @@
 				CE614B9A293B6E3100C4FDC0 /* GIFView.swift in Sources */,
 				CE614B7E293B254E00C4FDC0 /* PokemonApiModel.swift in Sources */,
 				CE614B6C293B1D2400C4FDC0 /* HomeView.swift in Sources */,
+				CE614BA0293C84D100C4FDC0 /* SearchbarView.swift in Sources */,
 				CE614B80293B266500C4FDC0 /* NetworkProtocol.swift in Sources */,
 				CE614B8E293B3B5400C4FDC0 /* Extension + View.swift in Sources */,
 				CE614B91293B3C1100C4FDC0 /* DetailView.swift in Sources */,
