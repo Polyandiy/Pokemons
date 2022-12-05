@@ -52,7 +52,7 @@ public class HomeViewModel: ObservableObject {
     private func pokemonDetailSubscriber(url: String, itemsNumber: Int, pokeDetail: Observable<PokemonDetailResponse>?){
         pokeDetail?.subscribe(onNext: { [weak self] (detail) in
             self?.pokemonHomeList.append(detail)
-            //self?.repository.getPokemonDetailByUrl(url: url)
+            self?.repository.getPokemonDetailByUrl(url: url)
             
             if(self?.pokemonHomeList.count == itemsNumber){
                 self?.pokemonHomeList.sort(by: { $0.order < $1.order })

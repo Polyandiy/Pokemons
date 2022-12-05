@@ -36,9 +36,9 @@ struct HomeView: View {
                     bottomView
                 }
                 
-//                if(showTeam){
-//                    CustomTeamView(showView: $showTeam)
-//                }
+                if(showTeam){
+                    CustomTeamView(showView: $showTeam)
+                }
             }
             .navigationBarTitle(Text("Pokedex").font(.subheadline), displayMode: .inline)
             .withGradientBackgroundStyle(startColor: "startBackgroundGradient", endColor: "endBackgroundGradient")
@@ -54,9 +54,9 @@ struct HomeView: View {
                     Text("LOADING...").withCustomFont(size: 20).onAppear(){ viewModel.activateSearchbar = false }
                 }
                 
-//                if(viewModel.activateSearchbar){
-//                    SearchbarView(boxNumber: $boxNumber, searchedPokemon: $searchedPokemon, showView: $viewModel.activateSearchbar, viewModel: viewModel)
-//                }
+                if(viewModel.activateSearchbar){
+                    SearchbarView(boxNumber: $boxNumber, searchedPokemon: $searchedPokemon, showView: $viewModel.activateSearchbar, viewModel: viewModel)
+                }
             }
         }
     }

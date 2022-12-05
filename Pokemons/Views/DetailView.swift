@@ -15,7 +15,7 @@ struct DetailView: View {
     
     private let bgColorUtils = BgColorUtils()
     
-    //private let pokemonTeamHelper = PokemonTeamHelper()
+    private let pokemonTeamHelper = PokemonTeamHelper()
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -28,9 +28,9 @@ struct DetailView: View {
                 addPokemonView
             }
             
-//            if(showCommonDialog) {
-//                CommonDialogView(message: $uiMessage, showCommonDialog: $showCommonDialog)
-//            }
+            if(showCommonDialog) {
+                CommonDialogView(message: $uiMessage, showCommonDialog: $showCommonDialog)
+            }
         }.onAppear(){
             viewModel.getPokemonDescriptionFromAPI(endpoint: pokemon.species.url)
             downloadPokemonMoves()
@@ -185,9 +185,9 @@ struct DetailView: View {
         )
         .cornerRadius(12)
         .onTapGesture {
-            //let teamIsNotFull = self.pokemonTeamHelper.addPokemonToList(pokemonName: self.pokemon.name, pokemonImage: self.pokemon.sprites.front_default)
+            let teamIsNotFull = self.pokemonTeamHelper.addPokemonToList(pokemonName: self.pokemon.name, pokemonImage: self.pokemon.sprites.front_default)
             
-            //showUiMessageAfterAddingPokemon(addingStatus: teamIsNotFull)
+            showUiMessageAfterAddingPokemon(addingStatus: teamIsNotFull)
         }
     }
     
@@ -197,38 +197,38 @@ struct DetailView: View {
         }
     }
     
-//    private func showUiMessageAfterAddingPokemon(addingStatus: PokemonTeamAdditionStatus){
-//        switch addingStatus {
-//        case PokemonTeamAdditionStatus.alreadyAdded:
-//            self.uiMessage = "This pokemon is already on your team!"
-//        case PokemonTeamAdditionStatus.teamIsFull:
-//            self.uiMessage = "You can't add more pokemons to your team! You must remove one of them."
-//        case PokemonTeamAdditionStatus.success:
-//            self.uiMessage = "Pokemon added to your team!"
-//        case PokemonTeamAdditionStatus.failed:
-//            self.uiMessage = "An error ocurred while adding this pokemon to your team."
-//        }
-//    }
+    private func showUiMessageAfterAddingPokemon(addingStatus: PokemonTeamAdditionStatus){
+        switch addingStatus {
+        case PokemonTeamAdditionStatus.alreadyAdded:
+            self.uiMessage = "This pokemon is already on your team!"
+        case PokemonTeamAdditionStatus.teamIsFull:
+            self.uiMessage = "You can't add more pokemons to your team! You must remove one of them."
+        case PokemonTeamAdditionStatus.success:
+            self.uiMessage = "Pokemon added to your team!"
+        case PokemonTeamAdditionStatus.failed:
+            self.uiMessage = "An error ocurred while adding this pokemon to your team."
+        }
+    }
 }
 
 /// STYLES
 
-private extension View {
-    func contentBackgroundStyle(cornerOne: UIRectCorner, cornerTwo: UIRectCorner) -> some View {
-        self.frame(maxWidth: .infinity)
-            .background(.white)
-            .overlay(
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(Color("startSearchbarGradient"), lineWidth: 10)
-            )
-            .cornerRadius(12)
-    }
-
-    func titleBackgroundStyle(cornerOne: UIRectCorner, cornerTwo: UIRectCorner) -> some View {
-        self.padding(.top, 5)
-            .frame(maxWidth: .infinity)
-            .background(Color("startSearchbarGradient"))
-            .cornerRadius(12)
-    }
-}
+//private extension View {
+//    func contentBackgroundStyle(cornerOne: UIRectCorner, cornerTwo: UIRectCorner) -> some View {
+//        self.frame(maxWidth: .infinity)
+//            .background(.white)
+//            .overlay(
+//                RoundedRectangle(cornerRadius: 12)
+//                    .stroke(Color("startSearchbarGradient"), lineWidth: 10)
+//            )
+//            .cornerRadius(12)
+//    }
+//
+//    func titleBackgroundStyle(cornerOne: UIRectCorner, cornerTwo: UIRectCorner) -> some View {
+//        self.padding(.top, 5)
+//            .frame(maxWidth: .infinity)
+//            .background(Color("startSearchbarGradient"))
+//            .cornerRadius(12)
+//    }
+//}
 
